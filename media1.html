@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de Média</title>
+    <script>
+        // Função para ler as notas de entrada
+        function lerNotas() {
+            let nota1 = parseFloat(prompt("Digite a primeira nota:"));
+            let nota2 = parseFloat(prompt("Digite a segunda nota:"));
+            let nota3 = parseFloat(prompt("Digite a terceira nota:"));
+            
+            return [nota1, nota2, nota3];
+        }
+
+        // Função para calcular a média das notas
+        function calcularMedia(notas) {
+            let soma = notas.reduce((total, nota) => total + nota, 0);
+            return soma / notas.length;
+        }
+
+        // Função para exibir o resultado
+        function exibirResultado(media) {
+            document.getElementById("resultado").innerText = 
+                "A média das notas é: " + media.toFixed(2);
+        }
+
+        // Função principal
+        function main() {
+            let notas = lerNotas();
+            let media = calcularMedia(notas);
+            exibirResultado(media);
+        }
+
+        // Executa a função principal quando a página é carregada
+        window.onload = main;
+    </script>
+</head>
+<body>
+    <h1>Calculadora de Média</h1>
+    <p id="resultado"></p>
+</body>
+</html>

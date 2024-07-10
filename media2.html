@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verificação de Aprovação</title>
+    <script>
+        // Função para ler o nome e as notas de entrada
+        function lerDados() {
+            let nome = prompt("Digite o nome do aluno:");
+            let nota1 = parseFloat(prompt("Digite a primeira nota:"));
+            let nota2 = parseFloat(prompt("Digite a segunda nota:"));
+            let nota3 = parseFloat(prompt("Digite a terceira nota:"));
+            let nota4 = parseFloat(prompt("Digite a quarta nota:"));
+            
+            return { nome, notas: [nota1, nota2, nota3, nota4] };
+        }
+
+        // Função para calcular a média das notas
+        function calcularMedia(notas) {
+            let soma = notas.reduce((total, nota) => total + nota, 0);
+            return soma / notas.length;
+        }
+
+        // Função para verificar se o aluno foi aprovado ou reprovado
+        function verificarAprovacao(media) {
+            if (media >= 7) {
+                return "Aprovado";
+            } else {
+                return "Reprovado";
+            }
+        }
+
+        // Função para exibir o resultado
+        function exibirResultado(nome, media, situacao) {
+            document.getElementById("resultado").innerHTML = 
+                "<strong>Nome do Aluno:</strong> " + nome + "<br>" +
+                "<strong>Média das Notas:</strong> " + media.toFixed(2) + "<br>" +
+                "<strong>Situação:</strong> " + situacao;
+        }
+
+        // Função principal
+        function main() {
+            let dados = lerDados();
+            let media = calcularMedia(dados.notas);
+            let situacao = verificarAprovacao(media);
+            exibirResultado(dados.nome, media, situacao);
+        }
+
+        // Executa a função principal quando a página é carregada
+        window.onload = main;
+    </script>
+</head>
+<body>
+    <h1>Verificação de Aprovação</h1>
+    <div id="resultado"></div>
+</body>
+</html>
